@@ -2,13 +2,16 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Header() {
   const navigate = useNavigate();
+
+  const user = useSelector((state: any) => state.user.user);
+
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        console.log("Sign out successful");
         navigate("/");
       })
       .catch((error) => {
@@ -22,12 +25,14 @@ function Header() {
         alt="logo"
         className="w-44 ml-28 mt-4"
       />
-      <button
-        className="bg-red-600 px-6 py-1 mr-6 my-6 rounded text-white font-medium tracking-wide hover:bg-red-700"
-        onClick={handleLogout}
-      >
-        Sign out
-      </button>
+      {user && (
+        <button
+          className="bg-red-600 px-6 py-1 mr-6 my-6 rounded text-white font-medium tracking-wide hover:bg-red-700"
+          onClick={handleLogout}
+        >
+          Sign out
+        </button>
+      )}
     </div>
   );
 }

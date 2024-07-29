@@ -38,32 +38,23 @@ function Login() {
           if (!isSignIn) {
             createUserWithEmailAndPassword(auth, values.email, values.password)
               .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("user", user);
                 setSubmitting(false);
                 navigate("/browse");
               })
               .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 alert(errorMessage);
                 setSubmitting(false);
-                console.log("SIGNUP", errorCode, errorMessage);
               });
           } else {
             signInWithEmailAndPassword(auth, values.email, values.password)
               .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("user", user);
                 setSubmitting(false);
                 navigate("/browse");
               })
               .catch((error) => {
-                console.log(error);
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 alert(errorMessage);
-                console.log(errorCode, errorMessage);
                 setSubmitting(false);
               });
           }
