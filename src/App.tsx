@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import Body from "./components/Body";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useNavigate,
+} from "react-router-dom";
 import Login from "./components/Login";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
@@ -20,6 +24,7 @@ const router = createBrowserRouter([
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -32,11 +37,13 @@ function App() {
             photoURL: user.photoURL,
           })
         );
+        navigate("/browse");
       } else {
         dispatch(logout());
+        navigate("/");
       }
     });
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   return <RouterProvider router={router} />;
 }
