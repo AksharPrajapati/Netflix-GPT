@@ -1,9 +1,15 @@
 import React from "react";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
+import { useTMDBData } from "../utils/hooks/useTMDBData";
 
 function Browse() {
+  useTMDBData();
+
   return (
-    <div className="flex justify-center items-center text-3xl h-screen">
-      Welcome to Netflix!
+    <div>
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 }
