@@ -32,7 +32,7 @@ function Login() {
         onSubmit={(values, { setSubmitting }) => {
           if (!isSignIn) {
             createUserWithEmailAndPassword(auth, values.email, values.password)
-              .then((userCredential) => {
+              .then(() => {
                 setSubmitting(false);
                 // navigate("/");
               })
@@ -43,7 +43,7 @@ function Login() {
               });
           } else {
             signInWithEmailAndPassword(auth, values.email, values.password)
-              .then((userCredential) => {
+              .then(() => {
                 setSubmitting(false);
                 // navigate("/");
               })

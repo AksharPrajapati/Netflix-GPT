@@ -41,7 +41,7 @@ function Header() {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [dispatch, navigate]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {

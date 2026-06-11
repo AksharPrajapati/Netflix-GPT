@@ -26,5 +26,5 @@ export const useTVData = () => {
       dispatch(setOnAir(onAir.results ?? []));
     };
     load();
-  }, []);
+  }, [dispatch]);
 };

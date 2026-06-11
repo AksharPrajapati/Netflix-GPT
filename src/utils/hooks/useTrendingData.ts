@@ -24,5 +24,5 @@ export const useTrendingData = () => {
       dispatch(setTvTrending(tv.results ?? []));
     };
     load();
-  }, []);
+  }, [dispatch]);
 };
